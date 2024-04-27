@@ -1,0 +1,35 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('your_dataset.csv')
+
+# Example 1: Histogram of Age
+plt.figure(figsize=(8, 6))
+sns.histplot(df['age'], bins=20, kde=True, color='skyblue')
+plt.title('Distribution of Age')
+plt.xlabel('Age')
+plt.ylabel('Frequency')
+plt.show()
+
+# Example 2: Bar plot of Sex
+plt.figure(figsize=(8, 6))
+sns.countplot(x='sex', data=df, palette='pastel')
+plt.title('Distribution of Sex')
+plt.xlabel('Sex (0 = female, 1 = male)')
+plt.ylabel('Count')
+plt.show()
+
+
+# Example 3: Box plot of Cholesterol by Target
+plt.figure(figsize=(8, 6))
+sns.boxplot(x='target', y='chol', data=df, palette='Set2')
+plt.title('Cholesterol Levels by Heart Disease Presence')
+plt.xlabel('Target (0 = No Heart Disease, 1 = Heart Disease)')
+plt.ylabel('Cholesterol Level')
+plt.show()
+
+# Example 4: Pairplot of Numeric Variables
+sns.pairplot(df[['age', 'chol', 'trestbps', 'thalach', 'oldpeak', 'target']], hue='target', palette='husl')
+plt.suptitle('Pairplot of Numeric Variables by Heart Disease Presence')
+plt.show()
